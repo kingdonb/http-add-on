@@ -5,8 +5,10 @@ metadata:
   namespace: {{ .Values.ingressNamespace | default .Release.Namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: nginx
 spec:
+  {{ if .Values.ingressClassName -}}
+  ingressClassName: {{ .Values.ingressClassName | quote }}
+  {{- end }}
   rules:
   {{- range .Values.hosts }}
   - host: {{ . | toString }}

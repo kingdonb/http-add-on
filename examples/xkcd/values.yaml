@@ -1,7 +1,10 @@
 replicaCount: 1
 hosts:
-  - "myhost.com"
-  - "myhost2.com"
+# - "myhost.com"
+# - "myhost2.com"
+  - "xkcd.hephy.pro"
+#  - ""
+ingressClassName: public
 targetPendingRequests: 200
 # This is the namespace that the ingress should be installed
 # into. It should be set to the same namespace as the
@@ -10,9 +13,11 @@ targetPendingRequests: 200
 ingressNamespace:
 image:
   repository: registry.k8s.io/e2e-test-images/agnhost
+  #repository: kingdonb/xkcd
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "2.45"
+  #tag: latest
 
 args:
   - netexec
