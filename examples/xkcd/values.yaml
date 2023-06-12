@@ -3,7 +3,7 @@ host: "xkcd.hephy.pro"
 #hosts:
 # - "myhost.com"
 # - "myhost2.com"
-  - "xkcd.hephy.pro"
+#  - "xkcd.hephy.pro"
 #  - ""
 ingressClassName: public
 targetPendingRequests: 200
