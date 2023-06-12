@@ -1,5 +1,6 @@
 replicaCount: 1
-hosts:
+host: "xkcd.hephy.pro"
+#hosts:
 # - "myhost.com"
 # - "myhost2.com"
   - "xkcd.hephy.pro"
