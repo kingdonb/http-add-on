@@ -3,10 +3,7 @@ apiVersion: http.keda.sh/v1alpha1
 metadata:
     name: {{ include "xkcd.fullname" . }}
 spec:
-    {{- with .Values.hosts }}
-    hosts:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+    host: {{ .Values.host }}
     targetPendingRequests: {{ .Values.targetPendingRequests }}
     scaleTargetRef:
         deployment: {{ include "xkcd.fullname" . }}

@@ -16,19 +16,17 @@ func removeAndUpdateRoutingTable(
 	lggr logr.Logger,
 	cl client.Client,
 	table *routing.Table,
-	hosts []string,
+	host,
 	namespace string,
 ) error {
 	lggr = lggr.WithName("removeAndUpdateRoutingTable")
-	for _, host := range hosts {
-		if err := table.RemoveTarget(host); err != nil {
-			lggr.Error(
-				err,
-				"could not remove host from routing table, progressing anyway",
-				"host",
-				host,
-			)
-		}
+	if err := table.RemoveTarget(host); err != nil {
+		lggr.Error(
+			err,
+			"could not remove host from routing table, progressing anyway",
+			"host",
+			host,
+		)
 	}
 
 	return updateRoutingMap(ctx, lggr, cl, namespace, table)
@@ -39,20 +37,18 @@ func addAndUpdateRoutingTable(
 	lggr logr.Logger,
 	cl client.Client,
 	table *routing.Table,
-	hosts []string,
+	host string,
 	target routing.Target,
 	namespace string,
 ) error {
 	lggr = lggr.WithName("addAndUpdateRoutingTable")
-	for _, host := range hosts {
-		if err := table.AddTarget(host, target); err != nil {
-			lggr.Error(
-				err,
-				"could not add host to routing table, progressing anyway",
-				"host",
-				host,
-			)
-		}
+	if err := table.AddTarget(host, target); err != nil {
+		lggr.Error(
+			err,
+			"could not add host to routing table, progressing anyway",
+			"host",
+			host,
+		)
 	}
 	return updateRoutingMap(ctx, lggr, cl, namespace, table)
 }

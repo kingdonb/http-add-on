@@ -10,8 +10,7 @@ spec:
   ingressClassName: {{ .Values.ingressClassName | quote }}
   {{- end }}
   rules:
-  {{- range .Values.hosts }}
-  - host: {{ . | toString }}
+  - host: {{ .Values.host }}
     http:
       paths:
       - path: /
@@ -21,4 +20,3 @@ spec:
             name: keda-add-ons-http-interceptor-proxy
             port:
               number: 8080
-  {{- end }}

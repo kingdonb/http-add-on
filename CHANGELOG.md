@@ -19,8 +19,6 @@ This changelog keeps track of work items that have been completed and are ready 
 
 ### New
 
-- **General**: Add multi-host support to `HTTPScaledObject` ([#552](https://github.com/kedacore/http-add-on/issues/552))
-
 ### Improvements
 
 - **General**: Automatically tag Docker image with commit SHA ([#567](https://github.com/kedacore/http-add-on/issues/567))
@@ -38,7 +36,7 @@ You can find all deprecations in [this overview](https://github.com/kedacore/htt
 
 New deprecation(s):
 
-- **General**: `host` field deprecated in favor of `hosts` in `HTTPScaledObject` ([#552](https://github.com/kedacore/http-add-on/issues/552))
+- TODO
 
 Previously announced deprecation(s):
 

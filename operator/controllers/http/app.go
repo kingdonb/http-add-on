@@ -80,14 +80,18 @@ func removeApplicationResources(
 		v1alpha1.AppScaledObjectTerminated,
 	))
 
-	return removeAndUpdateRoutingTable(
+	if err := removeAndUpdateRoutingTable(
 		ctx,
 		logger,
 		cl,
 		routingTable,
-		httpso.Spec.Hosts,
+		httpso.Spec.Host,
 		baseConfig.CurrentNamespace,
-	)
+	); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func createOrUpdateApplicationResources(
@@ -140,12 +144,12 @@ func createOrUpdateApplicationResources(
 		targetPendingReqs = *tpr
 	}
 
-	return addAndUpdateRoutingTable(
+	if err := addAndUpdateRoutingTable(
 		ctx,
 		logger,
 		cl,
 		routingTable,
-		httpso.Spec.Hosts,
+		httpso.Spec.Host,
 		routing.NewTarget(
 			httpso.GetNamespace(),
 			httpso.Spec.ScaleTargetRef.Service,
@@ -154,5 +158,8 @@ func createOrUpdateApplicationResources(
 			targetPendingReqs,
 		),
 		baseConfig.CurrentNamespace,
-	)
+	); err != nil {
+		return err
+	}
+	return nil
 }
